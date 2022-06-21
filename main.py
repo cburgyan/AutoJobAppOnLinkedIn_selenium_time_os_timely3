@@ -45,29 +45,35 @@ user_we = driver.find_element(by=By.ID, value="username")
 password_we = driver.find_element(by=By.ID, value="password")
 agree_we = driver.find_element(by=By.XPATH, value='//*[@id="organic-div"]/form/div[3]/button')
 
-#--Login
+#----Login
 user_we.send_keys(os.environ.get("USER"))
 password_we.send_keys(os.environ.get("PASS"))
 agree_we.click()
 
 
-#--Save Company
-#----Create WebElement for Save
+#Save Company
+#--Create WebElement for Save
 time.sleep(5)
 save_we = driver.find_element(by=By.XPATH, value='/html/body/div[5]/div[3]/div[3]/div[2]/div/section[2]/div/div/div[1]/div/div[1]/div/div[1]/div[1]/div[3]/div/button')
 save_we.click()
 
 
-#--Select Company LinkedIn Page
+#Select Company LinkedIn Page
 time.sleep(2)
 company_we = driver.find_element(by=By.XPATH, value='/html/body/div[5]/div[3]/div[3]/div[2]/div/section[1]/div/div/ul/li[1]/div/div[1]/div[1]/div[2]/div[2]/a')
 company_we.click()
 
 
-#----Follow Company
+#--Follow Company
 time.sleep(3)
-follow_we = driver.find_element(by=By.XPATH, value='/html/body/div[5]/div[3]/div/div[2]/div/div[2]/main/div[1]/section/div/div[2]/div[1]/div[3]/div[1]/div[1]/button')
-follow_we.click()
+# follow_we = driver.find_element(by=By.XPATH, value='/html/body/div[5]/div[3]/div/div[2]/div/div[2]/main/div[1]/section/div/div[2]/div[1]/div[3]/div[1]/div[1]/button')
+# follow_we.click()
+
+
+#Return to Previous Page
+time.sleep(2)
+# webdriver.ActionChains(driver).send_keys(Keys.ALT, Keys.LEFT, Keys.ALT).perform()
+driver.back()
 
 #Quit Driver
 #driver.quit()
