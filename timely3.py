@@ -40,13 +40,16 @@ class CodingTimer:
         try:
             with open(self.filename, 'r') as file:
                 list_file_lines = file.readlines()
-                last_line_dissected = list_file_lines[-1].split(" ")
-                if "duration" in last_line_dissected or "stop" in last_line_dissected:
-                    self.file_interaction("a", list_of_additions)
-                elif "pause" in last_line_dissected or "unpause" in last_line_dissected or "start" in last_line_dissected:
-                    print("Could NOT start time because time has ALREADY been started!!")
+                if list_file_lines != []:
+                    last_line_dissected = list_file_lines[-1].split(" ")
+                    if "duration" in last_line_dissected or "stop" in last_line_dissected:
+                        self.file_interaction("a", list_of_additions)
+                    elif "pause" in last_line_dissected or "unpause" in last_line_dissected or "start" in last_line_dissected:
+                        print("Could NOT start time because time has ALREADY been started!!")
+                    else:
+                        print("Something went wrong! Time record is corrupted.")
                 else:
-                    print("Something went wrong! Time record is corrupted.")
+                    self.file_interaction("a", list_of_additions)
         except FileNotFoundError as error_message:
             self.file_interaction("a", list_of_additions)
 
